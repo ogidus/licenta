@@ -1,7 +1,7 @@
 ---
 - name: Insert live system metrics into PostgreSQL
   hosts: all
-  gather_facts: yes
+  gather_facts: no
   vars:
     db_host: "192.168.137.173"
     db_port: 30200
