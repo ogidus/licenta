@@ -23,7 +23,7 @@
         login_host: "{{ db_host }}"
         port: "{{ db_port }}"
         query: |
-          INSERT INTO {{ table_name }} (hostname, cpu_load, date)
+          INSERT INTO "{{ table_name }}" (hostname, cpu_load, date)
           VALUES ('{{ ansible_hostname }}', {{ cpu_load.stdout | float }}, '{{ ansible_date_time.date }}');
       delegate_to: localhost
       when: cpu_load.stdout is defined
