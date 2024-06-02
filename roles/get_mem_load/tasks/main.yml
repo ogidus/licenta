@@ -21,6 +21,6 @@
     port: "{{ db_port }}"
     query: |
       INSERT INTO {{ mem_table }} (hostname, mem_load, date)
-      VALUES ('{{ hostname.stdout }}', {{ mem.stdout | float }}, '{{ date.stdout }}');
+      VALUES ('{{ hostname.stdout }}', {{ mem_load.stdout | float }}, '{{ date.stdout }}');
   delegate_to: localhost
   when: hostname.stdout is defined
