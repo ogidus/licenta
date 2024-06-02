@@ -1,0 +1,26 @@
+---
+
+- name: Gather hostname
+  shell: "cat /etc/hostname"
+  register: hostname
+
+- name: Gather date
+  shell: "date +%Y-%m-%d"
+  register: date
+
+- name: Gather live Memory load
+  shell: free | awk '/Mem/ {printf("%.2f"), $3/$2}'
+  register: mem_load
+
+- name: Insert data into the memory_load table
+  community.postgresql.postgresql_query:
+    db: "{{ db_name }}"
+    login_user: "{{ db_user }}"
+    login_password: "{{ db_password }}"
+    login_host: "{{ db_host }}"
+    port: "{{ db_port }}"
+    query: |
+      INSERT INTO {{ mem_table }} (hostname, mem_load, date)
+      VALUES ('{{ hostname.stdout }}', {{ cpu_load.stdout | float }}, '{{ date.stdout }}');
+  delegate_to: localhost
+  when: hostname.stdout is defined

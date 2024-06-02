@@ -9,6 +9,8 @@
     db_user: "logger"
     db_password: "lohpidr"
     table_name: "system_metrics"
+    mem_table: "memory_load"
 
   roles:
     - get_cpu_load
+    - get_mem_load
