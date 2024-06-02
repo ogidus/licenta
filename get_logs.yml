@@ -3,7 +3,7 @@
   hosts: all
   gather_facts: no
   vars:
-    db_host: "192.168.100.182"
+    db_host: "192.168.137.159"
     db_port: 30200
     db_name: "logger"
     db_user: "logger"
