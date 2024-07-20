@@ -8,7 +8,7 @@
   register: hostname
 
 - name: Gather date
-  shell: "date +%Y-%m-%d-%H-%M"
+  shell: "date +%Y-%m-%d %H:%M:%S"
   register: date
 
 - name: Insert data into the system_metrics table

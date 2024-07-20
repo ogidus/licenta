@@ -5,7 +5,7 @@
   register: hostname
 
 - name: Gather date
-  shell: "date +%Y-%m-%d-%H-%M"
+  shell: "date +%Y-%m-%d %H:%M:%S"
   register: date
 
 - name: Gather live Memory load
@@ -20,7 +20,7 @@
     login_host: "{{ db_host }}"
     port: "{{ db_port }}"
     query: |
-      INSERT INTO {{ mem_table }} (hostname, load, date)
+      INSERT INTO {{ mem_table }} (hostname, mem_load, date)
       VALUES ('{{ hostname.stdout }}', {{ mem_load.stdout | float }}, '{{ date.stdout }}');
   delegate_to: localhost
   when: hostname.stdout is defined
