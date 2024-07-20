@@ -2,8 +2,6 @@
 - name: Gather root disk usage
   shell: "df -h / | awk 'NR==2 {print $5}' | tr -d '%'"
   register: disk_load
-  debug: 
-    msg: "{{ disk_load }}"
 
 - name: Gather hostname
   shell: "cat /etc/hostname"
@@ -22,6 +20,6 @@
     port: "{{ db_port }}"
     query: |
       INSERT INTO {{ disk_table }} (hostname, load, date)
-      VALUES ('{{ hostname.stdout }}', {{ cpu_load.stdout | int }}, '{{ date.stdout }}');
+      VALUES ('{{ hostname.stdout }}', {{ disk_load.stdout | int }}, '{{ date.stdout }}');
   delegate_to: localhost
   when: hostname.stdout is defined
