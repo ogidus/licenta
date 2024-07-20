@@ -16,3 +16,4 @@
   roles:
     - get_cpu_load
     - get_mem_load
+    - get_disk_load
