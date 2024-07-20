@@ -1,0 +1,25 @@
+---
+- name: Gather root disk usage
+  shell: "df -h / | awk 'NR==2 {print $5}' | tr -d '%'"
+  register: disk_load
+
+- name: Gather hostname
+  shell: "cat /etc/hostname"
+  register: hostname
+
+- name: Gather date
+  shell: "date +'%Y-%m-%d %H:%M:%S'"
+  register: date
+
+- name: Insert data into the disk_table
+  community.postgresql.postgresql_query:
+    db: "{{ db_name }}"
+    login_user: "{{ db_user }}"
+    login_password: "{{ db_password }}"
+    login_host: "{{ db_host }}"
+    port: "{{ db_port }}"
+    query: |
+      INSERT INTO {{ disk_table }} (hostname, load, date)
+      VALUES ('{{ hostname.stdout }}', {{ cpu_load.stdout | float }}, '{{ date.stdout }}');
+  delegate_to: localhost
+  when: hostname.stdout is defined
