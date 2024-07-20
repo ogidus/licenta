@@ -2,6 +2,7 @@
 - name: Gather root disk usage
   shell: "df -h / | awk 'NR==2 {print $5}' | tr -d '%'"
   register: disk_load
+  debug: msg = "{{ disk_load }}""
 
 - name: Gather hostname
   shell: "cat /etc/hostname"
