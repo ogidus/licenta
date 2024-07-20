@@ -10,8 +10,8 @@
     db_name: "logger"
     db_user: "{{ db_user }}"
     db_password: "{{ db_password }}"
-    cpu_table: "cpu_load"
-    mem_table: "memory_load"
+    cpu_table: "cpu_table"
+    mem_table: "mem_table"
 
   roles:
     - get_cpu_load
