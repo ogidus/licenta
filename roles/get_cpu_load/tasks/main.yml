@@ -8,7 +8,7 @@
   register: hostname
 
 - name: Gather date
-  shell: "date +%Y-%m-%d"
+  shell: "date +%Y-%m-%d-%H-%M"
   register: date
 
 - name: Insert data into the system_metrics table
@@ -19,7 +19,7 @@
     login_host: "{{ db_host }}"
     port: "{{ db_port }}"
     query: |
-      INSERT INTO {{ table_name }} (hostname, cpu_load, date)
+      INSERT INTO {{ cpu_table }} (hostname, cpu_load, date)
       VALUES ('{{ hostname.stdout }}', {{ cpu_load.stdout | float }}, '{{ date.stdout }}');
   delegate_to: localhost
   when: hostname.stdout is defined

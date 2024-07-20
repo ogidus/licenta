@@ -5,7 +5,7 @@
   register: hostname
 
 - name: Gather date
-  shell: "date +%Y-%m-%d"
+  shell: "date +%Y-%m-%d-%H-%M"
   register: date
 
 - name: Gather live Memory load

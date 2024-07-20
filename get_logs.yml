@@ -2,13 +2,15 @@
 - name: Insert live system metrics into PostgreSQL
   hosts: all
   gather_facts: no
+  vars_files:
+    - vault.yml
   vars:
     db_host: "192.168.137.159"
     db_port: 30200
     db_name: "logger"
-    db_user: "logger"
-    db_password: "lohpidr"
-    table_name: "system_metrics"
+    db_user: "{{ db_user }}"
+    db_password: "{{ db_password }}"
+    cpu_table: "cpu_load"
     mem_table: "memory_load"
 
   roles:
