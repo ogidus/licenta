@@ -12,6 +12,7 @@
     db_password: "{{ db_password }}"
     cpu_table: "cpu_table"
     mem_table: "mem_table"
+    disk_table: "disk_table"
 
   roles:
     - get_cpu_load
