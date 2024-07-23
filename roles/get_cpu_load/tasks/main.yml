@@ -11,7 +11,7 @@
   shell: "date +'%Y-%m-%d %H:%M:%S'"
   register: date
 
-- name: Insert data into the system_metrics table
+- name: Insert data into the {{ cpu_table }} table
   community.postgresql.postgresql_query:
     db: "{{ db_name }}"
     login_user: "{{ db_user }}"
@@ -19,7 +19,7 @@
     login_host: "{{ db_host }}"
     port: "{{ db_port }}"
     query: |
-      INSERT INTO {{ idle_table }} (hostname, load, date)
+      INSERT INTO {{ cpu_table }} (hostname, load, date)
       VALUES ('{{ hostname.stdout }}', {{ cpu_load.stdout | float }}, '{{ date.stdout }}');
   delegate_to: localhost
   when: hostname.stdout is defined

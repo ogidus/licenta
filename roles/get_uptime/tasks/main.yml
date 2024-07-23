@@ -11,7 +11,7 @@
   shell: "date +'%Y-%m-%d %H:%M:%S'"
   register: date
 
-- name: Insert data into the disk_table
+- name: Insert data into the {{ uptime_table }} table
   community.postgresql.postgresql_query:
     db: "{{ db_name }}"
     login_user: "{{ db_user }}"
