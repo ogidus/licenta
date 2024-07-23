@@ -1,0 +1,5 @@
+---
+- name: keep sysstat consistent
+  ansible.builtin.package:
+    name: sysstat
+    state: present
