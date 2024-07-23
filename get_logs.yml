@@ -14,6 +14,7 @@
     mem_table: "mem_table"
     disk_table: "disk_table"
     uptime_table: "uptime_table"
+    idle_table: "idle_table"
 
   roles:
     - sysstat
@@ -21,3 +22,4 @@
     - get_mem_load
     - get_disk_load
     - get_uptime
+    - get_cpu_idle

@@ -1,0 +1,25 @@
+---
+- name: Gather cpu idle
+  shell: "uptime | awk -F'load average:' '{ print $2 }' | cut -d, -f1"
+  register: cpu_idle
+
+- name: Gather hostname
+  shell: "cat /etc/hostname"
+  register: hostname
+
+- name: Gather date
+  shell: "date +'%Y-%m-%d %H:%M:%S'"
+  register: date
+
+- name: Insert data into the system_metrics table
+  community.postgresql.postgresql_query:
+    db: "{{ db_name }}"
+    login_user: "{{ db_user }}"
+    login_password: "{{ db_password }}"
+    login_host: "{{ db_host }}"
+    port: "{{ db_port }}"
+    query: |
+      INSERT INTO {{ cpu_table }} (hostname, idle, date)
+      VALUES ('{{ hostname.stdout }}', {{ cpu_idle.stdout | float }}, '{{ date.stdout }}');
+  delegate_to: localhost
+  when: hostname.stdout is defined
