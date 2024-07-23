@@ -14,10 +14,11 @@
     mem_table: "mem_table"
     disk_table: "disk_table"
     uptime_table: "uptime_table"
-- name: keep sysstat consistent
-  ansible.builtin.package:
-    name: systat
-    state: present
+  tasks:
+  - name: keep sysstat consistent
+    ansible.builtin.package:
+      name: systat
+      state: present
   roles:
     - get_cpu_load
     - get_mem_load
