@@ -1,6 +1,6 @@
 ---
 - name: Gather cpu idle
-  shell: "uptime | awk -F'load average:' '{ print $2 }' | cut -d, -f1"
+  shell: "mpstat 1 1 | awk '/^Average/ {print $12 / 100}'"
   register: cpu_idle
 
 - name: Gather hostname
