@@ -19,7 +19,7 @@
     login_host: "{{ db_host }}"
     port: "{{ db_port }}"
     query: |
-      INSERT INTO {{ cpu_table }} (hostname, load, date)
+      INSERT INTO {{ idle_table }} (hostname, load, date)
       VALUES ('{{ hostname.stdout }}', {{ cpu_load.stdout | float }}, '{{ date.stdout }}');
   delegate_to: localhost
   when: hostname.stdout is defined
