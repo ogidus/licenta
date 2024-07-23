@@ -1,6 +1,9 @@
 ---
 - name: Insert live system metrics into PostgreSQL
   hosts: all
+  ansible.builtin.package:
+    name: sysstat
+    state: present
   gather_facts: no
   vars_files:
     - vault.yml
@@ -14,7 +17,6 @@
     mem_table: "mem_table"
     disk_table: "disk_table"
     uptime_table: "uptime_table"
-
   roles:
     - get_cpu_load
     - get_mem_load
