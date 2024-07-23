@@ -1,0 +1,25 @@
+---
+- name: uptime
+  shell: "uptime | awk '{print $3}'"
+  register: uptime
+
+- name: Gather hostname
+  shell: "cat /etc/hostname"
+  register: hostname
+
+- name: Gather date
+  shell: "date +'%Y-%m-%d %H:%M:%S'"
+  register: date
+
+- name: Insert data into the disk_table
+  community.postgresql.postgresql_query:
+    db: "{{ db_name }}"
+    login_user: "{{ db_user }}"
+    login_password: "{{ db_password }}"
+    login_host: "{{ db_host }}"
+    port: "{{ db_port }}"
+    query: |
+      INSERT INTO {{ uptime_table }} (hostname, uptime, date)
+      VALUES ('{{ hostname.stdout }}', {{ uptime.stdout | int }}, '{{ date.stdout }}');
+  delegate_to: localhost
+  when: hostname.stdout is defined
