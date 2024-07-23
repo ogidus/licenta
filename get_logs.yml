@@ -17,7 +17,7 @@
   tasks:
   - name: keep sysstat consistent
     ansible.builtin.package:
-      name: systat
+      name: sysstat
       state: present
   roles:
     - get_cpu_load
