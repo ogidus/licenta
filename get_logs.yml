@@ -5,7 +5,7 @@
   vars_files:
     - vault.yml
   vars:
-    db_host: "10.223.0.55"
+    db_host: "10.111.39.43"
     db_port: 30200
     db_name: "logger"
     db_user: "{{ db_user }}"
