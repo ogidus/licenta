@@ -1,6 +1,6 @@
 ---
 - name: Gather live CPU load
-  shell: "uptime | awk -F'load average:' '{ print $2 }' | cut -d, -f1"
+  shell: "awk '{print $1 / n}' n=$(nproc) /proc/loadavg"
   register: cpu_load
 
 - name: Gather hostname
