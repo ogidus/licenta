@@ -9,12 +9,12 @@ import sys
 LOCAL_SERVICES = ['mysqld', 'semaphore', 'grafana-server']
 
 # Remote PostgreSQL server details
-POSTGRESQL_HOST = 'remote.postgresql.server.com'  # Change this
-POSTGRESQL_PORT = 5432  # Default PostgreSQL port
+POSTGRESQL_HOST = '192.168.1.137'  # Change this
+POSTGRESQL_PORT = 30200  # Default PostgreSQL port
 
 # Telegram Bot config
-TELEGRAM_BOT_TOKEN = 'YOUR_TELEGRAM_BOT_TOKEN'  # Replace this
-TELEGRAM_CHAT_ID = 'YOUR_CHAT_ID'  # Replace this
+TELEGRAM_BOT_TOKEN = '6811108044:AAGtvRNxz4YiTQPHOme5SswRO1dxodIoO9Q'
+TELEGRAM_CHAT_ID = '670248004'
 
 # ============ FUNCTIONS ============
 
