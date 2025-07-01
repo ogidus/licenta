@@ -9,7 +9,7 @@ import sys
 LOCAL_SERVICES = ['mysqld', 'semaphore', 'grafana-server']
 
 # Remote PostgreSQL server details
-POSTGRESQL_HOST = '192.168.1.137'
+POSTGRESQL_HOST = '172.20.10.9'
 POSTGRESQL_PORT = 30200 
 
 # Telegram Bot config
